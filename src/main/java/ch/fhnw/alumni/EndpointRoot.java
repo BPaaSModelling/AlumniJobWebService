@@ -1,4 +1,4 @@
-package ch.fhnw.inspire;
+package ch.fhnw.alumni;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

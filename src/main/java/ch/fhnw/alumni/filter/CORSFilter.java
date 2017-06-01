@@ -1,4 +1,4 @@
-package ch.fhnw.inspire.webservice.filter;
+package ch.fhnw.alumni.filter;
 
 import java.io.IOException;
 
