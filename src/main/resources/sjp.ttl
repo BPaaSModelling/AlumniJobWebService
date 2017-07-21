@@ -1,0 +1,589 @@
+# baseURI: http:/ikm-group.ch/archimeo/sjp
+# imports: https://raw.githubusercontent.com/ikm-group/ArchiMEO/master/ARCHIMEO/EO/EO.ttl
+# prefix: sjp
+
+@prefix eo: <http://ikm-group.ch/archiMEO/eo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sjp: <http:/ikm-group.ch/archimeo/sjp#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http:/ikm-group.ch/archimeo/sjp>
+  rdf:type owl:Ontology ;
+  owl:imports <https://raw.githubusercontent.com/ikm-group/ArchiMEO/master/ARCHIMEO/EO/EO.ttl> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+sjp:AcademicDegree
+  rdf:type owl:Class ;
+  rdfs:label "Academic degree" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:AnswerType
+  rdf:type owl:Class ;
+  rdfs:label "Answer type" ;
+  rdfs:subClassOf sjp:ModelElement ;
+.
+sjp:BSc
+  rdf:type sjp:BachelorsDegree ;
+  rdfs:label "BSc" ;
+.
+sjp:BTech
+  rdf:type sjp:BachelorsDegree ;
+  rdfs:label "BTech" ;
+.
+sjp:BachelorBusinessAdministration
+  rdf:type sjp:BachelorsDegree ;
+  rdfs:label "Bachelor business administration" ;
+.
+sjp:BachelorInformationSystems
+  rdf:type sjp:BachelorsDegree ;
+  rdfs:label "BIS" ;
+.
+sjp:BachelorOfScience
+  rdf:type owl:Class ;
+  rdfs:label "Bachelor of Science" ;
+  rdfs:subClassOf sjp:BachelorsDegree ;
+.
+sjp:BachelorOfTechnology
+  rdf:type owl:Class ;
+  rdfs:label "Bachelor of technology" ;
+  rdfs:subClassOf sjp:BachelorsDegree ;
+.
+sjp:BachelorsDegree
+  rdf:type owl:Class ;
+  rdfs:label "Bachelors degree" ;
+  rdfs:subClassOf sjp:AcademicDegree ;
+.
+sjp:Business
+  rdf:type sjp:JobFunction ;
+  rdfs:label "Business" ;
+.
+sjp:Company
+  rdf:type owl:Class ;
+  rdfs:label "Company" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:CompanyHasSize
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Company has size" ;
+.
+sjp:CompanyRefersToLegalEntity
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Company ;
+  rdfs:label "Company refers to legal entity" ;
+  rdfs:range eo:LegalEntity ;
+.
+sjp:Company_Name
+  rdf:type sjp:JobElement ;
+  rdf:type sjp:SearchSelection ;
+  rdfs:label "Company Name" ;
+  sjp:ModelHasAnnotationRelation sjp:JobIsOfferredByLegalEntity ;
+  sjp:ModelHasSearchNamespace eo:LegalEntity ;
+.
+sjp:CreditSuisse
+  rdf:type eo:LegalEntity ;
+  rdfs:label "Credit suisse" ;
+.
+sjp:EmploymentType
+  rdf:type owl:Class ;
+  rdfs:label "Employment type" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:English
+  rdf:type sjp:Language ;
+  rdfs:label "English" ;
+.
+sjp:EntryLevel
+  rdf:type sjp:JobLevel ;
+  rdfs:label "Entry level" ;
+.
+sjp:Equals
+  rdf:type sjp:LogicalOperators ;
+  rdfs:label "Equals (=)" ;
+.
+sjp:French
+  rdf:type sjp:Language ;
+  rdfs:label "French" ;
+.
+sjp:FullTime
+  rdf:type sjp:EmploymentType ;
+  rdfs:label "Fulltime" ;
+.
+sjp:German
+  rdf:type sjp:Language ;
+  rdfs:label "German" ;
+.
+sjp:GreaterEqualsThan
+  rdf:type sjp:LogicalOperators ;
+  rdfs:label "greaterequalsthan (>=)" ;
+.
+sjp:GreaterThan
+  rdf:type sjp:LogicalOperators ;
+  rdfs:label "greater than (>)" ;
+.
+sjp:HR
+  rdf:type sjp:JobFunction ;
+  rdfs:label "HR" ;
+.
+sjp:Industry
+  rdf:type owl:Class ;
+  rdfs:label "Industry" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:InformationTechnology
+  rdf:type sjp:JobFunction ;
+  rdfs:label "Information technology" ;
+.
+sjp:International_Travel
+  rdf:type sjp:Travel ;
+  rdfs:label "International " ;
+.
+sjp:Italian
+  rdf:type sjp:Language ;
+  rdfs:label "Italian" ;
+.
+sjp:Job
+  rdf:type owl:Class ;
+  rdfs:label "Job" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:JobElement
+  rdf:type owl:Class ;
+  rdfs:label "Job element" ;
+  rdfs:subClassOf sjp:ObjectElement ;
+.
+sjp:JobFunction
+  rdf:type owl:Class ;
+  rdfs:label "Job function" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:JobHasEmploymentType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has employment type" ;
+  rdfs:range sjp:EmploymentType ;
+.
+sjp:JobHasIndustry
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has industry" ;
+  rdfs:range sjp:Industry ;
+.
+sjp:JobHasJobFunction
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has job function" ;
+  rdfs:range sjp:JobFunction ;
+.
+sjp:JobHasJobLevel
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has job level" ;
+  rdfs:range sjp:JobLevel ;
+.
+sjp:JobHasJobTitle
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has job title" ;
+  rdfs:range sjp:JobTitle ;
+.
+sjp:JobHasJobType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has job type" ;
+  rdfs:range sjp:JobType ;
+.
+sjp:JobHasLocation
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has location" ;
+  rdfs:range sjp:Location ;
+.
+sjp:JobHasPublishingDate
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has publishing date" ;
+  rdfs:range sjp:PublishingDate ;
+.
+sjp:JobHasRequiredAcademicDegree
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "has required academic degree" ;
+  rdfs:range sjp:AcademicDegree ;
+.
+sjp:JobHasRequiredLanguageSkills
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has required language skills" ;
+  rdfs:range sjp:LanguageSkills ;
+.
+sjp:JobHasRequiredSkills
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has required skills" ;
+  rdfs:range sjp:Skills ;
+.
+sjp:JobHasRequiredTravel
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has required travel" ;
+  rdfs:range sjp:Travel ;
+.
+sjp:JobHasRequiredWorkExperience
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job has required work experience" ;
+  rdfs:range sjp:WorkExperience ;
+.
+sjp:JobIsOfferredByLegalEntity
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Job ;
+  rdfs:label "Job is offerred by legal entity" ;
+  rdfs:range eo:LegalEntity ;
+.
+sjp:JobLevel
+  rdf:type owl:Class ;
+  rdfs:label "Job level" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:JobTitle
+  rdf:type owl:Class ;
+  rdfs:label "Job title" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:JobType
+  rdf:type owl:Class ;
+  rdfs:label "Job type" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:Job_Function
+  rdf:type sjp:JobElement ;
+  rdf:type sjp:SearchSelection ;
+  rdfs:label "Job Function" ;
+  sjp:ModelHasAnnotationRelation sjp:JobHasJobFunction ;
+  sjp:ModelHasSearchNamespace sjp:JobFunction ;
+.
+sjp:Job_Location
+  rdf:type sjp:JobElement ;
+  rdf:type sjp:SearchSelection ;
+  rdfs:label "Job Location" ;
+  sjp:ModelHasAnnotationRelation sjp:JobHasLocation ;
+  sjp:ModelHasSearchNamespace sjp:Location ;
+.
+sjp:Job_Offer_Type
+  rdf:type sjp:JobElement ;
+  rdf:type sjp:SingleSelection ;
+  rdfs:label "Job Offer Type" ;
+  sjp:ModelHasAnswers sjp:FullTime ;
+  sjp:ModelHasAnswers sjp:PartTime ;
+.
+sjp:LEOffersJob
+  rdf:type rdf:Property ;
+  rdfs:domain eo:LegalEntity ;
+  rdfs:label "LEOffers job" ;
+  rdfs:range sjp:Job ;
+.
+sjp:Language
+  rdf:type owl:Class ;
+  rdfs:label "Language" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:LanguageLevel
+  rdf:type owl:Class ;
+  rdfs:label "Language level" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:LanguageSkills
+  rdf:type owl:Class ;
+  rdfs:label "Language proficiency" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:LanguageSkillsIncludesLanguageLevel
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:LanguageSkills ;
+  rdfs:label "Language skills includes language level" ;
+  rdfs:range sjp:LanguageLevel ;
+.
+sjp:LanguageSkillsRefersToLanguage
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:LanguageSkills ;
+  rdfs:label "Language skills refers to language" ;
+  rdfs:range sjp:Language ;
+.
+sjp:LessEqualsThan
+  rdf:type sjp:LogicalOperators ;
+  rdfs:label "less equals than (<=)" ;
+.
+sjp:LessThan
+  rdf:type sjp:LogicalOperators ;
+  rdfs:label "less than (<)" ;
+.
+sjp:Location
+  rdf:type owl:Class ;
+  rdfs:label "Location" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:LogicalOperators
+  rdf:type owl:Class ;
+  rdfs:label "Logical operators" ;
+  rdfs:subClassOf sjp:ModelElement ;
+.
+sjp:MScBIS
+  rdf:type sjp:MasterOfScience ;
+  rdfs:label "Master in BIS" ;
+.
+sjp:MScIM
+  rdf:type sjp:MasterOfScience ;
+  rdfs:label "MSc IM" ;
+.
+sjp:Manager
+  rdf:type sjp:JobLevel ;
+  rdfs:label "Manager" ;
+.
+sjp:MasterOfScience
+  rdf:type owl:Class ;
+  rdfs:label "Master of science" ;
+  rdfs:subClassOf sjp:MastersDegree ;
+.
+sjp:MasterOfTechnology
+  rdf:type owl:Class ;
+  rdfs:label "Master of technology" ;
+  rdfs:subClassOf sjp:MastersDegree ;
+.
+sjp:MastersDegree
+  rdf:type owl:Class ;
+  rdfs:label "Masters degree" ;
+  rdfs:subClassOf sjp:AcademicDegree ;
+.
+sjp:Model
+  rdf:type owl:Class ;
+  rdfs:label "Model" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:ModelElement
+  rdf:type owl:Class ;
+  rdfs:subClassOf sjp:Model ;
+.
+sjp:ModelHasAnnotationRelation
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Model ;
+  rdfs:range rdf:Property ;
+.
+sjp:ModelHasAnswers
+  rdf:type rdf:Property ;
+  rdfs:domain sjp:AnswerType ;
+  rdfs:label "" ;
+  rdfs:range owl:Thing ;
+.
+sjp:ModelHasSearchNamespace
+  rdf:type rdf:Property ;
+  rdfs:domain sjp:SearchSelection ;
+  rdfs:label "Model has search namespace" ;
+  rdfs:range owl:Thing ;
+.
+sjp:MultiSelection
+  rdf:type owl:Class ;
+  rdfs:label "Multi selection" ;
+  rdfs:subClassOf sjp:AnswerType ;
+.
+sjp:National_Travel
+  rdf:type sjp:Travel ;
+  rdfs:label "National" ;
+.
+sjp:None_Travel
+  rdf:type sjp:Travel ;
+  rdfs:label "None" ;
+.
+sjp:NotEqual
+  rdf:type sjp:LogicalOperators ;
+  rdfs:label "not equal (!=)" ;
+.
+sjp:Novartis
+  rdf:type eo:LegalEntity ;
+  rdfs:label "Novartis" ;
+.
+sjp:OUOffersJob
+  rdf:type rdf:Property ;
+  rdfs:domain eo:OrganisationalUnit ;
+  rdfs:label "OUOffers job" ;
+  rdfs:range sjp:Job ;
+.
+sjp:ObjectElement
+  rdf:type owl:Class ;
+  rdfs:label "" ;
+  rdfs:subClassOf sjp:Model ;
+.
+sjp:PartTime
+  rdf:type sjp:EmploymentType ;
+  rdfs:label "Part time" ;
+.
+sjp:Permanent
+  rdf:type sjp:JobType ;
+  rdfs:label "Permanent" ;
+.
+sjp:Person
+  rdf:type owl:Class ;
+  rdfs:label "Person" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:PersonHasDegree
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "has degree" ;
+  rdfs:range sjp:AcademicDegree ;
+.
+sjp:PersonHasLanguageSkills
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has language skills" ;
+  rdfs:range sjp:LanguageSkills ;
+.
+sjp:PersonHasPreferredCompany
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred company" ;
+  rdfs:range sjp:Company ;
+.
+sjp:PersonHasPreferredCompanySize
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred company size" ;
+.
+sjp:PersonHasPreferredEmploymentType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred employment type" ;
+  rdfs:range sjp:EmploymentType ;
+.
+sjp:PersonHasPreferredIndustry
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred industry" ;
+  rdfs:range sjp:Industry ;
+.
+sjp:PersonHasPreferredJobFunction
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred job function" ;
+  rdfs:range sjp:JobFunction ;
+.
+sjp:PersonHasPreferredJobLevel
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred job level" ;
+  rdfs:range sjp:JobLevel ;
+.
+sjp:PersonHasPreferredJobTitle
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred job title" ;
+  rdfs:range sjp:JobTitle ;
+.
+sjp:PersonHasPreferredJobType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred job type" ;
+  rdfs:range sjp:JobType ;
+.
+sjp:PersonHasPreferredLocation
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred location" ;
+  rdfs:range sjp:Location ;
+.
+sjp:PersonHasPreferredPublishingDate
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred publishing date" ;
+  rdfs:range sjp:PublishingDate ;
+.
+sjp:PersonHasPreferredTravel
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has preferred travel" ;
+  rdfs:range sjp:Travel ;
+.
+sjp:PersonHasSkills
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has skills" ;
+  rdfs:range sjp:Skills ;
+.
+sjp:PersonHasWorkExperience
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:Person ;
+  rdfs:label "Person has work experience" ;
+  rdfs:range sjp:WorkExperience ;
+.
+sjp:Portuguese
+  rdf:type sjp:Language ;
+  rdfs:label "Portuguese" ;
+.
+sjp:PublishingDate
+  rdf:type owl:Class ;
+  rdfs:label "Publishing date" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:Publishing_Date
+  rdf:type sjp:JobElement ;
+  rdf:type sjp:ValueInsert ;
+  rdfs:label "Publishing Date" ;
+  sjp:ModelHasAnnotationRelation sjp:JobHasPublishingDate ;
+  sjp:ValueInsertTypeHasDataType xsd:date ;
+.
+sjp:Roche
+  rdf:type eo:LegalEntity ;
+  rdfs:label "Roche" ;
+.
+sjp:SearchSelection
+  rdf:type owl:Class ;
+  rdfs:label "Search selection" ;
+  rdfs:subClassOf sjp:AnswerType ;
+.
+sjp:SingleSelection
+  rdf:type owl:Class ;
+  rdfs:label "Single selection" ;
+  rdfs:subClassOf sjp:AnswerType ;
+.
+sjp:Skills
+  rdf:type owl:Class ;
+  rdfs:label "Skills" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:Temporary
+  rdf:type sjp:JobType ;
+  rdfs:label "Temporary" ;
+.
+sjp:Travel
+  rdf:type owl:Class ;
+  rdfs:label "Travel" ;
+  rdfs:subClassOf owl:Thing ;
+.
+sjp:Travel_Requirements
+  rdf:type sjp:JobElement ;
+  rdf:type sjp:MultiSelection ;
+  rdfs:label "Travel Requirements" ;
+  sjp:ModelHasAnswers sjp:International_Travel ;
+  sjp:ModelHasAnswers sjp:National_Travel ;
+  sjp:ModelHasAnswers sjp:None_Travel ;
+.
+sjp:UBS
+  rdf:type eo:LegalEntity ;
+  rdfs:label "UBS" ;
+.
+sjp:ValueInsert
+  rdf:type owl:Class ;
+  rdfs:label "Value insert" ;
+  rdfs:subClassOf sjp:AnswerType ;
+.
+sjp:ValueInsertTypeHasDataType
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:ValueInsert ;
+  rdfs:range rdfs:Datatype ;
+.
+sjp:WorkExperience
+  rdf:type owl:Class ;
+  rdfs:label "Work experience" ;
+  rdfs:subClassOf owl:Thing ;
+.

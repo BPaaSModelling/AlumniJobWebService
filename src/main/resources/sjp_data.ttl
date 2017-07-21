@@ -1,0 +1,270 @@
+# baseURI: http:/ikm-group.ch/archimeo/sjp_data
+# imports: http:/ikm-group.ch/archimeo/sjp
+# prefix: sjp_data
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sjp: <http:/ikm-group.ch/archimeo/sjp#> .
+@prefix sjp_data: <http:/ikm-group.ch/archimeo/sjp_data#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sjp:LanguageSkillsIncludesProficiency
+  rdf:type owl:ObjectProperty ;
+  rdfs:domain sjp:LanguageSkills ;
+  rdfs:label "Language skills includes proficiency" ;
+  rdfs:range sjp:Proficiency ;
+.
+<http:/ikm-group.ch/archimeo/sjp_data>
+  rdf:type owl:Ontology ;
+  owl:imports <http:/ikm-group.ch/archimeo/sjp> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+<http:/ikm-group.ch/archimeo/sjp_data#10years>
+  rdf:type sjp:WorkExperience ;
+  rdfs:label "years" ;
+.
+<http:/ikm-group.ch/archimeo/sjp_data#30May2017>
+  rdf:type sjp:PublishingDate ;
+  rdfs:label "May2017" ;
+.
+<http:/ikm-group.ch/archimeo/sjp_data#5years>
+  rdf:type sjp:WorkExperience ;
+  rdfs:label "years" ;
+.
+sjp_data:A1
+  rdf:type sjp:LanguageLevel ;
+  rdfs:label "A1" ;
+.
+sjp_data:A2
+  rdf:type sjp:LanguageLevel ;
+  rdfs:label "A2" ;
+.
+sjp_data:ApplicationDeveloper
+  rdf:type sjp:JobTitle ;
+  rdfs:label "Application developer" ;
+.
+sjp_data:B1
+  rdf:type sjp:LanguageLevel ;
+  rdfs:label "B1" ;
+.
+sjp_data:B2
+  rdf:type sjp:LanguageLevel ;
+  rdfs:label "B2" ;
+.
+sjp_data:Ben
+  rdf:type sjp:Person ;
+  rdfs:label "Ben" ;
+  sjp:PersonHasLanguageSkills sjp_data:LanguageSkillsForBen ;
+  sjp:PersonHasPreferredCompany sjp_data:Novartis ;
+  sjp:PersonHasPreferredCompany sjp_data:Roche ;
+  sjp:PersonHasPreferredCompany sjp_data:UBS ;
+  sjp:PersonHasPreferredEmploymentType sjp:FullTime ;
+  sjp:PersonHasPreferredIndustry sjp_data:Finance ;
+  sjp:PersonHasPreferredJobFunction sjp:Business ;
+  sjp:PersonHasPreferredJobFunction sjp:InformationTechnology ;
+  sjp:PersonHasPreferredJobLevel sjp:Manager ;
+  sjp:PersonHasPreferredJobTitle sjp_data:ApplicationDeveloper ;
+  sjp:PersonHasPreferredJobTitle sjp_data:BusinessAnalyst ;
+  sjp:PersonHasPreferredJobTitle sjp_data:DatabaseManager ;
+  sjp:PersonHasPreferredJobType sjp:Permanent ;
+  sjp:PersonHasSkills sjp_data:Management ;
+  sjp:PersonHasSkills sjp_data:Programming ;
+  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:PersonSpeaksLanguage sjp:English ;
+.
+sjp_data:BusinessAnalyst
+  rdf:type sjp:JobTitle ;
+  rdfs:label "Business analyst" ;
+.
+sjp_data:C
+  rdf:type sjp:LanguageLevel ;
+  rdfs:label "C" ;
+.
+sjp_data:CreditSuisse
+  rdf:type sjp:Company ;
+  rdfs:label "Credit suisse" ;
+.
+sjp_data:DatabaseManager
+  rdf:type sjp:JobTitle ;
+  rdfs:label "Database manager" ;
+.
+sjp_data:Emanuele
+  rdf:type sjp:Person ;
+  rdfs:label "Emanuele" ;
+  sjp:PersonHasDegree sjp:MScBIS ;
+  sjp:PersonHasLanguageSkills sjp_data:LanguageSkillsForEmanuele ;
+  sjp:PersonHasPreferredCompany sjp_data:CreditSuisse ;
+  sjp:PersonHasPreferredCompany sjp_data:Roche ;
+  sjp:PersonHasPreferredEmploymentType sjp:FullTime ;
+  sjp:PersonHasPreferredIndustry sjp_data:Finance ;
+  sjp:PersonHasPreferredJobFunction sjp:Business ;
+  sjp:PersonHasPreferredJobFunction sjp:InformationTechnology ;
+  sjp:PersonHasPreferredJobLevel sjp:Manager ;
+  sjp:PersonHasPreferredJobTitle sjp_data:BusinessAnalyst ;
+  sjp:PersonHasPreferredJobTitle sjp_data:RiskManagementSpecialist ;
+  sjp:PersonHasPreferredJobType sjp:Permanent ;
+  sjp:PersonHasSkills sjp_data:Management ;
+  sjp:PersonHasSkills sjp_data:Negotiation ;
+  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+.
+sjp_data:Finance
+  rdf:type sjp:Industry ;
+  rdfs:label "Finance" ;
+.
+sjp_data:Job_1
+  rdf:type sjp:Job ;
+  rdfs:label "Business Analyst"@en ;
+  rdfs:label "Business Analzzzzzt"@de ;
+  sjp:JobHasEmploymentType sjp:FullTime ;
+  sjp:JobHasIndustry sjp_data:Pharma ;
+  sjp:JobHasJobFunction sjp:Business ;
+  sjp:JobHasJobLevel sjp:EntryLevel ;
+  sjp:JobHasJobTitle sjp_data:BusinessAnalyst ;
+  sjp:JobHasJobType sjp:Permanent ;
+  sjp:JobHasPublishingDate <http:/ikm-group.ch/archimeo/sjp_data#30May2017> ;
+  sjp:JobHasRequiredAcademicDegree sjp:MScBIS ;
+  sjp:JobHasRequiredLanguageSkills sjp_data:LanguageSkillsInRocheForBA ;
+  sjp:JobHasRequiredSkills sjp_data:Management ;
+  sjp:JobHasRequiredWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:JobIsOfferredByLegalEntity sjp:Roche ;
+.
+sjp_data:Job_2
+  rdf:type sjp:Job ;
+  rdfs:label "ApplicationDeveloper"@en ;
+  sjp:JobHasEmploymentType sjp:FullTime ;
+  sjp:JobHasIndustry sjp_data:Pharma ;
+  sjp:JobHasJobFunction sjp:InformationTechnology ;
+  sjp:JobHasJobLevel sjp:EntryLevel ;
+  sjp:JobHasJobTitle sjp_data:ApplicationDeveloper ;
+  sjp:JobHasJobType sjp:Temporary ;
+  sjp:JobHasRequiredAcademicDegree sjp:BachelorInformationSystems ;
+  sjp:JobHasRequiredLanguageSkills sjp_data:LanguageSkillsforAppDevInNovartis ;
+  sjp:JobHasRequiredSkills sjp_data:Programming ;
+  sjp:JobHasRequiredWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:JobIsOfferredByLegalEntity sjp:Novartis ;
+.
+sjp_data:Job_3
+  rdf:type sjp:Job ;
+  rdfs:label "RiskManagementSpecialist"@en ;
+  sjp:JobHasEmploymentType sjp:FullTime ;
+  sjp:JobHasIndustry sjp_data:Finance ;
+  sjp:JobHasJobFunction sjp:Business ;
+  sjp:JobHasJobLevel sjp:Manager ;
+  sjp:JobHasJobTitle sjp_data:RiskManagementSpecialist ;
+  sjp:JobHasJobType sjp:Permanent ;
+  sjp:JobHasRequiredAcademicDegree sjp:MScBIS ;
+  sjp:JobHasRequiredSkills sjp_data:Management ;
+  sjp:JobHasRequiredSkills sjp_data:Negotiation ;
+  sjp:JobHasRequiredWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#10years> ;
+  sjp:JobIsOfferredByLegalEntity sjp:UBS ;
+.
+sjp_data:Knut
+  rdf:type sjp:Person ;
+  rdfs:label "Knut" ;
+  sjp:PersonHasDegree sjp:MScBIS ;
+  sjp:PersonHasLanguageSkills sjp_data:LanguageSkillsforKnut ;
+  sjp:PersonHasPreferredCompany sjp_data:Roche ;
+  sjp:PersonHasPreferredCompany sjp_data:UBS ;
+  sjp:PersonHasPreferredEmploymentType sjp:FullTime ;
+  sjp:PersonHasPreferredIndustry sjp_data:Finance ;
+  sjp:PersonHasPreferredIndustry sjp_data:Pharma ;
+  sjp:PersonHasPreferredJobLevel sjp:Manager ;
+  sjp:PersonHasPreferredJobType sjp:Permanent ;
+  sjp:PersonHasSkills sjp_data:Management ;
+  sjp:PersonHasSkills sjp_data:Negotiation ;
+  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#10years> ;
+.
+sjp_data:LanguageSkillsForBen
+  rdf:type sjp:LanguageSkills ;
+  rdfs:label "Language skills for ben" ;
+  sjp:LanguageSkillsIncludesLanguageLevel sjp_data:C ;
+  sjp:LanguageSkillsRefersToLanguage sjp:English ;
+.
+sjp_data:LanguageSkillsForEmanuele
+  rdf:type sjp:LanguageSkills ;
+  rdfs:label "Language skills for emanuele" ;
+  sjp:LanguageSkillsIncludesLanguageLevel sjp_data:A2 ;
+  sjp:LanguageSkillsRefersToLanguage sjp:English ;
+.
+sjp_data:LanguageSkillsForSeema
+  rdf:type sjp:LanguageSkills ;
+  rdfs:label "Language skills for seema" ;
+  sjp:LanguageSkillsIncludesLanguageLevel sjp_data:B1 ;
+  sjp:LanguageSkillsRefersToLanguage sjp:English ;
+.
+sjp_data:LanguageSkillsInRocheForBA
+  rdf:type sjp:LanguageSkills ;
+  rdfs:label "Language skills in roche for BA" ;
+  sjp:LanguageSkillsIncludesLanguageLevel sjp_data:B1 ;
+  sjp:LanguageSkillsRefersToLanguage sjp:English ;
+.
+sjp_data:LanguageSkillsforAppDevInNovartis
+  rdf:type sjp:LanguageSkills ;
+  rdfs:label "Language skillsfor app dev in novartis" ;
+  sjp:LanguageSkillsIncludesLanguageLevel sjp_data:A2 ;
+  sjp:LanguageSkillsRefersToLanguage sjp:German ;
+.
+sjp_data:LanguageSkillsforKnut
+  rdf:type sjp:LanguageSkills ;
+  rdfs:label "Language skillsfor knut" ;
+  sjp:LanguageSkillsIncludesLanguageLevel sjp_data:C ;
+  sjp:LanguageSkillsRefersToLanguage sjp:English ;
+.
+sjp_data:Management
+  rdf:type sjp:Skills ;
+  rdfs:label "Management" ;
+.
+sjp_data:Negotiation
+  rdf:type sjp:Skills ;
+  rdfs:label "Negotiation" ;
+.
+sjp_data:None
+  rdf:type sjp:WorkExperience ;
+  rdfs:label "None" ;
+.
+sjp_data:Novartis
+  rdf:type sjp:Company ;
+  rdfs:label "Novartis" ;
+.
+sjp_data:Pharma
+  rdf:type sjp:Industry ;
+  rdfs:label "Pharma" ;
+.
+sjp_data:Programming
+  rdf:type sjp:Skills ;
+  rdfs:label "Programming" ;
+.
+sjp_data:RiskManagementSpecialist
+  rdf:type sjp:JobTitle ;
+  rdfs:label "Risk management specialist" ;
+.
+sjp_data:Roche
+  rdf:type sjp:Company ;
+  rdfs:label "Roche" ;
+.
+sjp_data:Seema
+  rdf:type sjp:Person ;
+  rdfs:label "Seema" ;
+  sjp:PersonHasDegree sjp:BTech ;
+  sjp:PersonHasLanguageSkills sjp_data:LanguageSkillsForSeema ;
+  sjp:PersonHasPreferredCompany sjp_data:CreditSuisse ;
+  sjp:PersonHasPreferredCompany sjp_data:Novartis ;
+  sjp:PersonHasPreferredCompany sjp_data:Roche ;
+  sjp:PersonHasPreferredCompany sjp_data:UBS ;
+  sjp:PersonHasPreferredEmploymentType sjp:FullTime ;
+  sjp:PersonHasPreferredEmploymentType sjp:PartTime ;
+  sjp:PersonHasPreferredIndustry sjp_data:Finance ;
+  sjp:PersonHasPreferredIndustry sjp_data:Pharma ;
+  sjp:PersonHasPreferredJobLevel sjp:EntryLevel ;
+  sjp:PersonHasPreferredJobLevel sjp:Manager ;
+  sjp:PersonHasPreferredJobType sjp:Permanent ;
+  sjp:PersonHasPreferredJobType sjp:Temporary ;
+  sjp:PersonHasSkills sjp_data:Management ;
+  sjp:PersonHasSkills sjp_data:Programming ;
+  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+.
+sjp_data:UBS
+  rdf:type sjp:Company ;
+  rdfs:label "UBS" ;
+.

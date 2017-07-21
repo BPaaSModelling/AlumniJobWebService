@@ -11,10 +11,18 @@ import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 
 public class TripleStoreManager {
-	
-	private static String TRIPLESTOREENDPOINT 	= "http://localhost:3030/alumni";
+	private static TripleStoreManager INSTANCE;
+	private static String TRIPLESTOREENDPOINT 	= "http://localhost:3030/test1";
 	private static String UPDATEENDPOINT 		= TRIPLESTOREENDPOINT + "/update";
 	private static String QUERYENDPOINT			= TRIPLESTOREENDPOINT + "/query";
+	
+	public static synchronized TripleStoreManager getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new TripleStoreManager();
+		}
+		return INSTANCE;
+	}
+	
 	
 	public TripleStoreManager(){
 		
