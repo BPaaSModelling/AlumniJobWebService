@@ -1,12 +1,12 @@
-# baseURI: http:/ikm-group.ch/archimeo/sjp_data
-# imports: http:/ikm-group.ch/archimeo/sjp
+# baseURI: http://ikm-group.ch/archimeo/sjp_data
+# imports: http://ikm-group.ch/archimeo/sjp
 # prefix: sjp_data
 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sjp: <http:/ikm-group.ch/archimeo/sjp#> .
-@prefix sjp_data: <http:/ikm-group.ch/archimeo/sjp_data#> .
+@prefix sjp: <http://ikm-group.ch/archimeo/sjp#> .
+@prefix sjp_data: <http://ikm-group.ch/archimeo/sjp_data#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 sjp:LanguageSkillsIncludesProficiency
@@ -15,20 +15,20 @@ sjp:LanguageSkillsIncludesProficiency
   rdfs:label "Language skills includes proficiency" ;
   rdfs:range sjp:Proficiency ;
 .
-<http:/ikm-group.ch/archimeo/sjp_data>
+<http://ikm-group.ch/archimeo/sjp_data>
   rdf:type owl:Ontology ;
-  owl:imports <http:/ikm-group.ch/archimeo/sjp> ;
+  owl:imports <http://ikm-group.ch/archimeo/sjp> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
-<http:/ikm-group.ch/archimeo/sjp_data#10years>
+<http://ikm-group.ch/archimeo/sjp_data#10years>
   rdf:type sjp:WorkExperience ;
   rdfs:label "years" ;
 .
-<http:/ikm-group.ch/archimeo/sjp_data#30May2017>
+<http://ikm-group.ch/archimeo/sjp_data#30May2017>
   rdf:type sjp:PublishingDate ;
   rdfs:label "May2017" ;
 .
-<http:/ikm-group.ch/archimeo/sjp_data#5years>
+<http://ikm-group.ch/archimeo/sjp_data#5years>
   rdf:type sjp:WorkExperience ;
   rdfs:label "years" ;
 .
@@ -70,7 +70,7 @@ sjp_data:Ben
   sjp:PersonHasPreferredJobType sjp:Permanent ;
   sjp:PersonHasSkills sjp_data:Management ;
   sjp:PersonHasSkills sjp_data:Programming ;
-  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:PersonHasWorkExperience <http://ikm-group.ch/archimeo/sjp_data#5years> ;
   sjp:PersonSpeaksLanguage sjp:English ;
 .
 sjp_data:BusinessAnalyst
@@ -106,7 +106,7 @@ sjp_data:Emanuele
   sjp:PersonHasPreferredJobType sjp:Permanent ;
   sjp:PersonHasSkills sjp_data:Management ;
   sjp:PersonHasSkills sjp_data:Negotiation ;
-  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:PersonHasWorkExperience <http://ikm-group.ch/archimeo/sjp_data#5years> ;
 .
 sjp_data:Finance
   rdf:type sjp:Industry ;
@@ -122,11 +122,11 @@ sjp_data:Job_1
   sjp:JobHasJobLevel sjp:EntryLevel ;
   sjp:JobHasJobTitle sjp_data:BusinessAnalyst ;
   sjp:JobHasJobType sjp:Permanent ;
-  sjp:JobHasPublishingDate <http:/ikm-group.ch/archimeo/sjp_data#30May2017> ;
+  sjp:JobHasPublishingDate <http://ikm-group.ch/archimeo/sjp_data#30May2017> ;
   sjp:JobHasRequiredAcademicDegree sjp:MScBIS ;
   sjp:JobHasRequiredLanguageSkills sjp_data:LanguageSkillsInRocheForBA ;
   sjp:JobHasRequiredSkills sjp_data:Management ;
-  sjp:JobHasRequiredWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:JobHasRequiredWorkExperience <http://ikm-group.ch/archimeo/sjp_data#5years> ;
   sjp:JobIsOfferredByLegalEntity sjp:Roche ;
 .
 sjp_data:Job_2
@@ -141,7 +141,7 @@ sjp_data:Job_2
   sjp:JobHasRequiredAcademicDegree sjp:BachelorInformationSystems ;
   sjp:JobHasRequiredLanguageSkills sjp_data:LanguageSkillsforAppDevInNovartis ;
   sjp:JobHasRequiredSkills sjp_data:Programming ;
-  sjp:JobHasRequiredWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:JobHasRequiredWorkExperience <http://ikm-group.ch/archimeo/sjp_data#5years> ;
   sjp:JobIsOfferredByLegalEntity sjp:Novartis ;
 .
 sjp_data:Job_3
@@ -156,7 +156,7 @@ sjp_data:Job_3
   sjp:JobHasRequiredAcademicDegree sjp:MScBIS ;
   sjp:JobHasRequiredSkills sjp_data:Management ;
   sjp:JobHasRequiredSkills sjp_data:Negotiation ;
-  sjp:JobHasRequiredWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#10years> ;
+  sjp:JobHasRequiredWorkExperience <http://ikm-group.ch/archimeo/sjp_data#10years> ;
   sjp:JobIsOfferredByLegalEntity sjp:UBS ;
 .
 sjp_data:Knut
@@ -173,7 +173,7 @@ sjp_data:Knut
   sjp:PersonHasPreferredJobType sjp:Permanent ;
   sjp:PersonHasSkills sjp_data:Management ;
   sjp:PersonHasSkills sjp_data:Negotiation ;
-  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#10years> ;
+  sjp:PersonHasWorkExperience <http://ikm-group.ch/archimeo/sjp_data#10years> ;
 .
 sjp_data:LanguageSkillsForBen
   rdf:type sjp:LanguageSkills ;
@@ -262,7 +262,7 @@ sjp_data:Seema
   sjp:PersonHasPreferredJobType sjp:Temporary ;
   sjp:PersonHasSkills sjp_data:Management ;
   sjp:PersonHasSkills sjp_data:Programming ;
-  sjp:PersonHasWorkExperience <http:/ikm-group.ch/archimeo/sjp_data#5years> ;
+  sjp:PersonHasWorkExperience <http://ikm-group.ch/archimeo/sjp_data#5years> ;
 .
 sjp_data:UBS
   rdf:type sjp:Company ;

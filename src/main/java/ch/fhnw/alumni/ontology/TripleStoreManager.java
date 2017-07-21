@@ -39,9 +39,9 @@ public class TripleStoreManager {
 	}
 
 	private void addNamespaces(ParameterizedSparqlString queryStr) {
-		queryStr.setNsPrefix("sjp_data", "http:/ikm-group.ch/archimeo/sjp_data#");
+		queryStr.setNsPrefix("sjp_data", "http://ikm-group.ch/archimeo/sjp_data#");
 		queryStr.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
-		queryStr.setNsPrefix("sjp", "http:/ikm-group.ch/archimeo/sjp#");
+		queryStr.setNsPrefix("sjp", "http://ikm-group.ch/archimeo/sjp#");
 		queryStr.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
 	}
 
