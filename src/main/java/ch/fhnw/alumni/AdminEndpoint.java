@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.jena.query.ParameterizedSparqlString;
+import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
@@ -23,12 +24,13 @@ import ch.fhnw.model.alumni.JobOfferElement;
 
 @Path("/admin")
 public class AdminEndpoint {
-	
-	private String class_type = "sjp:JobElement";
 	private Gson gson = new Gson();
-	private TripleStoreManager tripleStoreManager = TripleStoreManager.getInstance();
+	private TripleStoreManager tripleStoreManager = new TripleStoreManager();
+	private String class_type = "sjp:JobElement";
+	
+	
 	@GET
-	@Path("getJobElements")
+	@Path("/getJobElements")
 	public Response getJobElements(){
 		System.out.println("\n####################<start>####################");
 		System.out.println("/requested parameters to generate a new Job offer" );
@@ -49,6 +51,7 @@ public class AdminEndpoint {
 		System.out.println("####################<end>####################");
 		return Response.status(Status.OK).entity(json).build();
 		
+		
 	}
 
 	private ArrayList<JobOfferElement> queryRawJobElements() throws NoResultsException {
@@ -67,8 +70,10 @@ public class AdminEndpoint {
 		queryStr.append("?field sjp:ModelHasSearchNamespace ?searchnamespace .");
 		queryStr.append("}");
 		queryStr.append("}");
-
-		ResultSet results = tripleStoreManager.performSelectQuery(queryStr).execSelect();
+		
+		QueryExecution queryExecution = tripleStoreManager.performSelectQuery(queryStr);
+		ResultSet results = queryExecution.execSelect();
+		
 		
 		//I query comparison operators only one time and I store them in a temp array
 		ArrayList<Answer> comparisonOperators;
@@ -97,9 +102,11 @@ public class AdminEndpoint {
 				
 				allJobOfferElement.add(tempJobElement);
 			}
+			
 		} else {
 			throw new NoResultsException("nore more results");
 		}
+		queryExecution.close();
 		return allJobOfferElement;
 	}
 	
@@ -111,7 +118,8 @@ public class AdminEndpoint {
 		queryStr.append("?operation rdfs:label ?label .");
 		queryStr.append("}");
 		
-		ResultSet results = tripleStoreManager.performSelectQuery(queryStr).execSelect();
+		QueryExecution queryExecution = tripleStoreManager.performSelectQuery(queryStr);
+		ResultSet results = queryExecution.execSelect();
 		
 		Set<Answer> comparisonOps = new HashSet<Answer>();
 
@@ -119,7 +127,7 @@ public class AdminEndpoint {
 			QuerySolution soln = results.next();
 			comparisonOps.add(new Answer(soln.get("?operation").toString(), soln.get("?label").toString()));
 		}
-		
+		queryExecution.close();
 		return comparisonOps;
 	}
 	
@@ -130,15 +138,16 @@ public class AdminEndpoint {
 		queryStr.append("?answer rdfs:label ?label .");
 		queryStr.append("}");
 		
-		ResultSet results = tripleStoreManager.performSelectQuery(queryStr).execSelect();
-		
+		//ResultSet results = tripleStoreManager.performSelectQuery(queryStr);
+		QueryExecution queryExecution = tripleStoreManager.performSelectQuery(queryStr);
+		ResultSet results = queryExecution.execSelect();
 		Set<Answer> answers = new HashSet<Answer>();
 
 		while (results.hasNext()) {
 			QuerySolution soln = results.next();
 			answers.add(new Answer(soln.get("?answer").toString(), soln.get("?label").toString()));
 		}
-		
+		queryExecution.close();
 		return answers;
 	}
 	

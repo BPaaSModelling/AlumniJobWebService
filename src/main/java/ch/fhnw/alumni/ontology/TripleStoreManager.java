@@ -5,6 +5,9 @@ import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
@@ -14,7 +17,8 @@ public class TripleStoreManager {
 	private static TripleStoreManager INSTANCE;
 	private static String TRIPLESTOREENDPOINT 	= "http://localhost:3030/test1";
 	private static String UPDATEENDPOINT 		= TRIPLESTOREENDPOINT + "/update";
-	private static String QUERYENDPOINT			= TRIPLESTOREENDPOINT + "/query";
+	private static String QUERYENDPOINT			= TRIPLESTOREENDPOINT + "/sparql";
+	
 	
 	public static synchronized TripleStoreManager getInstance() {
 		if (INSTANCE == null) {
@@ -36,6 +40,7 @@ public class TripleStoreManager {
 		UpdateRequest update = UpdateFactory.create(queryStr.toString());
 		UpdateProcessor up = UpdateExecutionFactory.createRemote(update, UPDATEENDPOINT);
 		up.execute();
+		
 	}
 
 	private void addNamespaces(ParameterizedSparqlString queryStr) {
@@ -43,12 +48,18 @@ public class TripleStoreManager {
 		queryStr.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 		queryStr.setNsPrefix("sjp", "http://ikm-group.ch/archimeo/sjp#");
 		queryStr.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
+		queryStr.setNsPrefix("eo", "http://ikm-group.ch/archiMEO/eo#");
 	}
 
 	public QueryExecution performSelectQuery(ParameterizedSparqlString queryStr) {
 		addNamespaces(queryStr);
+		System.out.println("***Performed query***\n" + queryStr.toString() + "***Performed query***\n");
 		Query query = QueryFactory.create(queryStr.toString());
 		return QueryExecutionFactory.sparqlService(QUERYENDPOINT, query);
+		//QueryExecution qexec = QueryExecutionFactory.sparqlService(QUERYENDPOINT, query);
+		//return qexec.execSelect();
+		
+		
 	}
 
 }

@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.jena.query.ParameterizedSparqlString;
+import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
@@ -61,16 +62,20 @@ public class SearchEndpoint {
 			}
 			queryStr.append("}");
 
-			ResultSet results = tripleStoreManager.performSelectQuery(queryStr).execSelect();
+			//ResultSet results = tripleStoreManager.performSelectQuery(queryStr);
+			QueryExecution queryExecution = tripleStoreManager.performSelectQuery(queryStr);
+			ResultSet results = queryExecution.execSelect();
 			SearchResultsModel sr = new SearchResultsModel();
 			if (results.hasNext()) {
 				while (results.hasNext()) {
 					QuerySolution soln = results.next();
 					sr.add(new SearchResult(soln.get("?subclass").toString(), soln.get("?label").toString()));
 				}
+				
 			} else {
 				throw new NoResultsException("nore more results");
 			}
+			queryExecution.close();
 			return sr;
 		}
 	}
