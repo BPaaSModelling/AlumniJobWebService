@@ -3,7 +3,10 @@ package ch.fhnw.alumni;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
+
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -20,6 +23,7 @@ import ch.fhnw.alumni.persistence.GlobalVariables;
 import ch.fhnw.exception.NoResultsException;
 import ch.fhnw.model.alumni.Answer;
 import ch.fhnw.model.alumni.JobOfferElement;
+import ch.fhnw.model.alumni.JobOfferModel;
 
 
 @Path("/admin")
@@ -149,6 +153,95 @@ public class AdminEndpoint {
 		}
 		queryExecution.close();
 		return answers;
+	}
+	
+	@POST
+@Path("/addjo")
+public Response getMsg(String json) {
+	
+	System.out.println("/joModel received: " +json);
+	
+	Gson gson = new Gson();
+	JobOfferModel jom = gson.fromJson(json, JobOfferModel.class);
+	
+	String id = UUID.randomUUID().toString();
+	//Here i remove all the elements (attributes) that does not have a valid value
+	jom.setProperties(removeEmptyElements(jom.getProperties()));
+	
+	//Here i set all the AnnotationRelation properties
+	jom.setProperties(addAnnotationRelations(jom.getProperties()));
+	
+	ParameterizedSparqlString querStr = new ParameterizedSparqlString();
+	
+	querStr.append("INSERT DATA{");
+	querStr.append("sjp:JobOffer" + "JobOffer"+id  +" rdf:type sjp:JobOffer ;");
+	System.out.println("    JobOffer ID: "+ "JobOffer"+id);
+	querStr.append("rdfs:label \"" + jom.getLabel() +"\" ;");
+	System.out.println("    JobOffer Label: "+ jom.getLabel());
+	for (int i = 0; i < jom.getProperties().size(); i++){
+		if (jom.getProperties().get(i).getTypeOfAnswer().equals(GlobalVariables.ANSWERTYPE_VALUEINSERT)){
+			querStr.append("<" + jom.getProperties().get(i).getAnnotationRelation() +"> \"" + jom.getProperties().get(i).getComparisonAnswer().trim() + "\"^^<" + jom.getProperties().get(i).getAnswerDatatype() + ">" +" ;");
+			System.out.println("    "+jom.getProperties().get(i).getPropertyLabel() + ": " + jom.getProperties().get(i).getComparisonAnswer().trim());
+		} else {
+			if (jom.getProperties().get(i).getGivenAnswerList() != null){
+			for (int j = 0; j < jom.getProperties().get(i).getGivenAnswerList().size(); j++){
+				querStr.append("<" + jom.getProperties().get(i).getAnnotationRelation() +"> " + "<" + jom.getProperties().get(i).getGivenAnswerList().get(j).getAnswerID().trim() +"> ;");
+				System.out.println("    "+jom.getProperties().get(i).getPropertyLabel() + ": " + jom.getProperties().get(i).getGivenAnswerList().get(j).getAnswerLabel().trim());
+			}
+			}
+		}
+	}
+
+	querStr.append("}");
+	//Model modelTpl = ModelFactory.createDefaultModel();
+	tripleStoreManager.insertQuery(querStr);
+
+	return Response.status(Status.OK).entity("{}").build();
+}
+
+	private ArrayList<JobOfferElement>addAnnotationRelations(ArrayList<JobOfferElement> elements){
+		ParameterizedSparqlString queryStr = new ParameterizedSparqlString();
+		queryStr.append("SELECT ?relation ?element WHERE {");
+		
+		queryStr.append("?element rdf:type " + class_type + ".");
+		queryStr.append("?element questionnaire:questionHasAnnotationRelation ?relation .");
+		queryStr.append("}");
+		
+		QueryExecution qexec = tripleStoreManager.performSelectQuery(queryStr);
+		ResultSet results = qexec.execSelect();
+
+		while (results.hasNext()) {
+			QuerySolution soln = results.next();
+			for (int i = 0; i < elements.size(); i++){
+				if (elements.get(i).getPropertyURI().equals(soln.get("?element").toString())){
+					elements.get(i).setAnnotationRelation(soln.get("?relation").toString());
+				}
+			}
+		}
+		qexec.close();
+		return elements;
+
+	}
+
+	private ArrayList<JobOfferElement> removeEmptyElements(ArrayList<JobOfferElement> elements){
+	ArrayList<JobOfferElement> temp = new ArrayList<JobOfferElement>();
+	
+		for (int i = 0; i < elements.size(); i++){
+			if (elements.get(i).getTypeOfAnswer().equals(GlobalVariables.ANSWERTYPE_VALUEINSERT) &&
+					elements.get(i).getComparisonAnswer() != null &&
+					!elements.get(i).getComparisonAnswer().trim().equals("")){
+				temp.add(elements.get(i));
+			}
+			else if (elements.get(i).getGivenAnswerList().size() != 0){
+				if (elements.get(i).getGivenAnswerList().size() == 1 &&
+					!elements.get(i).getGivenAnswerList().get(0).getAnswerID().equals("")){
+					temp.add(elements.get(i));
+					//System.out.println("Validated - "+elements.get(i).getPropertyLabel());
+				}
+			}
+		}
+		
+		return temp;
 	}
 	
 //	@POST
