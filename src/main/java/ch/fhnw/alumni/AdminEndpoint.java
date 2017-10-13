@@ -38,7 +38,7 @@ public class AdminEndpoint {
 	public Response getJobElements(){
 		System.out.println("\n####################<start>####################");
 		System.out.println("/requested parameters to generate a new Job offer" );
-		System.out.println("####################<end>####################");
+		System.out.println("#################### <end> ####################");
 		
 		ArrayList<JobOfferElement> result = new ArrayList<JobOfferElement>();
 		
