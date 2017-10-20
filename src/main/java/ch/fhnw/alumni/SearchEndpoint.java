@@ -25,9 +25,9 @@ public class SearchEndpoint {
 	private Gson gson = new Gson();
 
 		@GET
-		public Response search(@QueryParam("ns") String namespace, @QueryParam("search") String search) {
+		public Response search(@QueryParam("ns") String namespace, @QueryParam("search") String search, @QueryParam("search_for_instances") String search_for_instances) {
 			System.out.println("\n####################<start>####################");
-			System.out.println("/search received values: ns " + namespace + " :: " + search);
+			System.out.println("/search received values: ns " + namespace + " :: " + search + " :: " + search_for_instances);
 			System.out.println("####################<end>####################");
 
 			// split keywords spaces spaces
@@ -36,7 +36,10 @@ public class SearchEndpoint {
 			SearchResultsModel searchResults = null;
 			
 			try {
-				searchResults = query(namespace, searchItems);
+				if (Boolean.valueOf(search_for_instances))
+					searchResults = queryInstances(namespace, searchItems);
+				else
+					searchResults = query(namespace, searchItems);
 			} catch (NoResultsException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,6 +79,35 @@ public class SearchEndpoint {
 				throw new NoResultsException("nore more results");
 			}
 			queryExecution.close();
+			return sr;
+		}
+		
+		private SearchResultsModel queryInstances(String namespace, String[] searchItems) throws NoResultsException {
+			ParameterizedSparqlString queryStr = new ParameterizedSparqlString();
+
+			queryStr.append("SELECT ?instance ?label WHERE {");
+			queryStr.append("?instance rdf:type* <" + namespace + "> .");
+			queryStr.append("?instance rdfs:label ?label .");
+			queryStr.append("FILTER(?instance!=<" + namespace +">)");
+
+			for (String param : searchItems) {
+				queryStr.append("FILTER regex(str(?label), \"" + param + "\", \"i\")");
+			}
+			queryStr.append("}");
+
+			QueryExecution qexec = tripleStoreManager.performSelectQuery(queryStr);
+			ResultSet results = qexec.execSelect();
+			
+			SearchResultsModel sr = new SearchResultsModel();
+			if (results.hasNext()) {
+				while (results.hasNext()) {
+					QuerySolution soln = results.next();
+					sr.add(new SearchResult(soln.get("?instance").toString(), soln.get("?label").toString()));
+				}
+			} else {
+				throw new NoResultsException("nore more results");
+			}
+			qexec.close();
 			return sr;
 		}
 	}

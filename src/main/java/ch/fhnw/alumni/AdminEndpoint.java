@@ -62,7 +62,7 @@ public class AdminEndpoint {
 		ParameterizedSparqlString queryStr = new ParameterizedSparqlString();
 		ArrayList<JobOfferElement> allJobOfferElement = new ArrayList<JobOfferElement>();
 		
-		queryStr.append("SELECT ?field ?label ?qType ?searchnamespace ?datatype WHERE {");
+		queryStr.append("SELECT ?field ?label ?qType ?searchnamespace ?datatype ?searchType WHERE {");
 		queryStr.append("?field rdf:type* " + class_type + " .");
 		queryStr.append("?field rdfs:label ?label .");
 		queryStr.append("?field rdf:type ?qType .");
@@ -72,6 +72,9 @@ public class AdminEndpoint {
 		queryStr.append("}");
 		queryStr.append("OPTIONAL{");
 		queryStr.append("?field sjp:ModelHasSearchNamespace ?searchnamespace .");
+		queryStr.append("}");
+		queryStr.append("OPTIONAL{");
+		queryStr.append("?field sjp:searchOnInstancesInsteadOfClasses ?searchType .");
 		queryStr.append("}");
 		queryStr.append("}");
 		
@@ -98,6 +101,14 @@ public class AdminEndpoint {
 				}else if (soln.get("?qType").toString().equals(GlobalVariables.ANSWERTYPE_SEARCH_SELECTION)){
 					//Call for the namespace
 					tempJobElement.setSearchNamespace(soln.get("?searchnamespace").toString());
+					//Call for the searchType (Classes of Instances)
+					if (soln.get("?searchType").toString() == null ||
+						soln.get("?searchType").toString().equals("") ||
+						soln.get("?searchType").toString().equals(GlobalVariables.BOOLEAN_FALSE_URI)){
+						tempJobElement.setSearchOnInstancesInsteadOfClasses(false);
+					} else {
+						tempJobElement.setSearchOnInstancesInsteadOfClasses(true);
+					}
 				}else if (soln.get("?qType").toString().equals(GlobalVariables.ANSWERTYPE_VALUEINSERT)){
 					//Call for the Datatype
 					tempJobElement.setAnswerDatatype(soln.get("?datatype").toString());

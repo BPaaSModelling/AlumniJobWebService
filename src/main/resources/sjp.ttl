@@ -77,9 +77,10 @@ sjp:CompanyRefersToLegalEntity
 sjp:Company_Name
   rdf:type sjp:JobElement ;
   rdf:type sjp:SearchSelection ;
-  rdfs:label "Company Name" ;
   sjp:ModelHasAnnotationRelation sjp:JobIsOfferredByLegalEntity ;
   sjp:ModelHasSearchNamespace eo:LegalEntity ;
+  sjp:searchOnInstancesInsteadOfClasses "true"^^xsd:boolean ;
+  rdfs:label "Company Name" ;
 .
 sjp:CreditSuisse
   rdf:type eo:LegalEntity ;
@@ -142,6 +143,11 @@ sjp:International_Travel
 sjp:Italian
   rdf:type sjp:Language ;
   rdfs:label "Italian" ;
+.
+sjp:JOB1
+  rdf:type owl:Class ;
+  rdfs:label "JOB1" ;
+  rdfs:subClassOf sjp:JobFunction ;
 .
 sjp:Job
   rdf:type owl:Class ;
@@ -260,23 +266,25 @@ sjp:JobType
 sjp:Job_Function
   rdf:type sjp:JobElement ;
   rdf:type sjp:SearchSelection ;
-  rdfs:label "Job Function" ;
   sjp:ModelHasAnnotationRelation sjp:JobHasJobFunction ;
   sjp:ModelHasSearchNamespace sjp:JobFunction ;
+  sjp:searchOnInstancesInsteadOfClasses "true"^^xsd:boolean ;
+  rdfs:label "Job Function" ;
 .
 sjp:Job_Location
   rdf:type sjp:JobElement ;
   rdf:type sjp:SearchSelection ;
-  rdfs:label "Job Location" ;
   sjp:ModelHasAnnotationRelation sjp:JobHasLocation ;
   sjp:ModelHasSearchNamespace sjp:Location ;
+  sjp:searchOnInstancesInsteadOfClasses "true"^^xsd:boolean ;
+  rdfs:label "Job Location" ;
 .
 sjp:Job_Offer_Type
   rdf:type sjp:JobElement ;
   rdf:type sjp:SingleSelection ;
-  rdfs:label "Job Offer Type" ;
   sjp:ModelHasAnswers sjp:FullTime ;
   sjp:ModelHasAnswers sjp:PartTime ;
+  rdfs:label "Job Offer Type" ;
 .
 sjp:LEOffersJob
   rdf:type rdf:Property ;
@@ -528,9 +536,9 @@ sjp:PublishingDate
 sjp:Publishing_Date
   rdf:type sjp:JobElement ;
   rdf:type sjp:ValueInsert ;
-  rdfs:label "Publishing Date" ;
   sjp:ModelHasAnnotationRelation sjp:JobHasPublishingDate ;
   sjp:ValueInsertTypeHasDataType xsd:date ;
+  rdfs:label "Publishing Date" ;
 .
 sjp:Roche
   rdf:type eo:LegalEntity ;
@@ -563,10 +571,10 @@ sjp:Travel
 sjp:Travel_Requirements
   rdf:type sjp:JobElement ;
   rdf:type sjp:MultiSelection ;
-  rdfs:label "Travel Requirements" ;
   sjp:ModelHasAnswers sjp:International_Travel ;
   sjp:ModelHasAnswers sjp:National_Travel ;
   sjp:ModelHasAnswers sjp:None_Travel ;
+  rdfs:label "Travel Requirements" ;
 .
 sjp:UBS
   rdf:type eo:LegalEntity ;
@@ -586,4 +594,10 @@ sjp:WorkExperience
   rdf:type owl:Class ;
   rdfs:label "Work experience" ;
   rdfs:subClassOf owl:Thing ;
+.
+sjp:searchOnInstancesInsteadOfClasses
+  rdf:type owl:DatatypeProperty ;
+  rdfs:domain sjp:SearchSelection ;
+  rdfs:label "search on instances instead of classes" ;
+  rdfs:range xsd:boolean ;
 .

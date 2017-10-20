@@ -13,6 +13,15 @@ public class JobOfferElement {
 	private String comparisonAnswer;
 	private String typeOfAnswer;
 	private String annotationRelation;
+	private boolean searchOnInstancesInsteadOfClasses;
+
+	public boolean isSearchOnInstancesInsteadOfClasses() {
+		return searchOnInstancesInsteadOfClasses;
+	}
+
+	public void setSearchOnInstancesInsteadOfClasses(boolean searchOnInstancesInsteadOfClasses) {
+		this.searchOnInstancesInsteadOfClasses = searchOnInstancesInsteadOfClasses;
+	}
 
 	public String getPropertyURI() {
 		return propertyURI;
