@@ -1,5 +1,4 @@
 # baseURI: http://ikm-group.ch/archimeo/sjp
-# imports: https://raw.githubusercontent.com/ikm-group/ArchiMEO/master/ARCHIMEO/EO/EO.ttl
 # prefix: sjp
 
 @prefix eo: <http://ikm-group.ch/archiMEO/eo#> .
@@ -11,7 +10,6 @@
 
 <http://ikm-group.ch/archimeo/sjp>
   rdf:type owl:Ontology ;
-  owl:imports <https://raw.githubusercontent.com/ikm-group/ArchiMEO/master/ARCHIMEO/EO/EO.ttl> ;
   owl:versionInfo "Created with TopBraid Composer" ;
 .
 sjp:AcademicDegree
@@ -79,7 +77,6 @@ sjp:Company_Name
   rdf:type sjp:SearchSelection ;
   sjp:ModelHasAnnotationRelation sjp:JobIsOfferredByLegalEntity ;
   sjp:ModelHasSearchNamespace eo:LegalEntity ;
-  sjp:searchOnInstancesInsteadOfClasses "true"^^xsd:boolean ;
   rdfs:label "Company Name" ;
 .
 sjp:CreditSuisse
@@ -127,7 +124,7 @@ sjp:HR
   rdf:type sjp:JobFunction ;
   rdfs:label "HR" ;
 .
-sjp:Industry
+sjp:IndustrySectors
   rdf:type owl:Class ;
   rdfs:label "Industry" ;
   rdfs:subClassOf owl:Thing ;
@@ -143,11 +140,6 @@ sjp:International_Travel
 sjp:Italian
   rdf:type sjp:Language ;
   rdfs:label "Italian" ;
-.
-sjp:JOB1
-  rdf:type owl:Class ;
-  rdfs:label "JOB1" ;
-  rdfs:subClassOf sjp:JobFunction ;
 .
 sjp:Job
   rdf:type owl:Class ;
@@ -174,7 +166,7 @@ sjp:JobHasIndustry
   rdf:type owl:ObjectProperty ;
   rdfs:domain sjp:Job ;
   rdfs:label "Job has industry" ;
-  rdfs:range sjp:Industry ;
+  rdfs:range sjp:IndustrySectors ;
 .
 sjp:JobHasJobFunction
   rdf:type owl:ObjectProperty ;
@@ -204,7 +196,6 @@ sjp:JobHasLocation
   rdf:type owl:ObjectProperty ;
   rdfs:domain sjp:Job ;
   rdfs:label "Job has location" ;
-  rdfs:range sjp:Location ;
 .
 sjp:JobHasPublishingDate
   rdf:type owl:ObjectProperty ;
@@ -268,15 +259,12 @@ sjp:Job_Function
   rdf:type sjp:SearchSelection ;
   sjp:ModelHasAnnotationRelation sjp:JobHasJobFunction ;
   sjp:ModelHasSearchNamespace sjp:JobFunction ;
-  sjp:searchOnInstancesInsteadOfClasses "true"^^xsd:boolean ;
   rdfs:label "Job Function" ;
 .
 sjp:Job_Location
   rdf:type sjp:JobElement ;
   rdf:type sjp:SearchSelection ;
   sjp:ModelHasAnnotationRelation sjp:JobHasLocation ;
-  sjp:ModelHasSearchNamespace sjp:Location ;
-  sjp:searchOnInstancesInsteadOfClasses "true"^^xsd:boolean ;
   rdfs:label "Job Location" ;
 .
 sjp:Job_Offer_Type
@@ -329,7 +317,6 @@ sjp:LessThan
 .
 sjp:Location
   rdf:type owl:Class ;
-  rdfs:label "Location" ;
   rdfs:subClassOf owl:Thing ;
 .
 sjp:LogicalOperators
@@ -468,7 +455,7 @@ sjp:PersonHasPreferredIndustry
   rdf:type owl:ObjectProperty ;
   rdfs:domain sjp:Person ;
   rdfs:label "Person has preferred industry" ;
-  rdfs:range sjp:Industry ;
+  rdfs:range sjp:IndustrySectors ;
 .
 sjp:PersonHasPreferredJobFunction
   rdf:type owl:ObjectProperty ;
@@ -498,7 +485,6 @@ sjp:PersonHasPreferredLocation
   rdf:type owl:ObjectProperty ;
   rdfs:domain sjp:Person ;
   rdfs:label "Person has preferred location" ;
-  rdfs:range sjp:Location ;
 .
 sjp:PersonHasPreferredPublishingDate
   rdf:type owl:ObjectProperty ;
@@ -549,6 +535,10 @@ sjp:SearchSelection
   rdfs:label "Search selection" ;
   rdfs:subClassOf sjp:AnswerType ;
 .
+sjp:Senior
+  rdf:type sjp:JobLevel ;
+  rdfs:label "Senior" ;
+.
 sjp:SingleSelection
   rdf:type owl:Class ;
   rdfs:label "Single selection" ;
@@ -594,10 +584,4 @@ sjp:WorkExperience
   rdf:type owl:Class ;
   rdfs:label "Work experience" ;
   rdfs:subClassOf owl:Thing ;
-.
-sjp:searchOnInstancesInsteadOfClasses
-  rdf:type owl:DatatypeProperty ;
-  rdfs:domain sjp:SearchSelection ;
-  rdfs:label "search on instances instead of classes" ;
-  rdfs:range xsd:boolean ;
 .
